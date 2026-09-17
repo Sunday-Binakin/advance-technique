@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,13 +15,32 @@ import { Logo } from "@/components/layout/logo";
 import { NavLink } from "@/components/layout/nav-link";
 import { NavSearch } from "@/components/layout/nav-search";
 import { siteConfig } from "@/lib/site-config";
+import { useActiveSection } from "@/hooks/use-active-section";
+
+// Homepage sections that double as previews of their own dedicated pages —
+// scrolling past one on "/" should highlight the matching nav item.
+const TRACKED_SECTION_IDS = ["about", "services"];
+const sectionIdByHref: Record<string, string> = {
+  "/#about": "about",
+  "/courses": "services",
+};
 
 function SiteHeader() {
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const pathname = usePathname();
+  const activeSectionId = useActiveSection(TRACKED_SECTION_IDS, pathname === "/");
 
   return (
     <header className="sticky top-0 z-40 flex h-24 items-stretch border-b border-border bg-background">
-      <div className="flex items-center rounded-r-full bg-primary py-2 pr-8 pl-5 sm:pr-12 sm:pl-6">
+      <div className="relative flex items-center overflow-hidden rounded-r-full bg-primary py-2 pr-8 pl-5 sm:pr-12 sm:pl-6 md:w-2/5 md:rounded-none md:bg-transparent md:pr-14">
+        <svg
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          className="absolute inset-0 -z-10 hidden size-full text-primary md:block"
+          aria-hidden="true"
+        >
+          <path d="M0,0 L70,0 C85,15 85,35 70,50 S55,85 70,100 L0,100 Z" fill="currentColor" />
+        </svg>
         <Logo variant="inverted" />
       </div>
 
@@ -30,7 +50,12 @@ function SiteHeader() {
           className="hidden flex-1 items-center justify-center gap-8 md:flex"
         >
           {siteConfig.navLinks.map((link) => (
-            <NavLink key={link.href} link={link} />
+            <NavLink
+              key={link.href}
+              link={link}
+              sectionId={sectionIdByHref[link.href]}
+              activeSectionId={activeSectionId}
+            />
           ))}
         </nav>
 
@@ -80,6 +105,8 @@ function SiteHeader() {
                 key={link.href}
                 link={link}
                 onNavigate={() => setMobileNavOpen(false)}
+                sectionId={sectionIdByHref[link.href]}
+                activeSectionId={activeSectionId}
                 className="rounded-lg px-2.5 py-2 text-base hover:bg-muted aria-[current=page]:bg-muted"
               />
             ))}

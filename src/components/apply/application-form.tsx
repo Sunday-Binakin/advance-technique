@@ -13,8 +13,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Field } from "@/components/apply/field";
-import { SelectField } from "@/components/apply/select-field";
+import { Field } from "@/components/form/field";
+import { SelectField } from "@/components/form/select-field";
 import { FileField } from "@/components/apply/file-field";
 import {
   courseOptions,

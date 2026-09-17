@@ -6,7 +6,7 @@ import { courses } from "@/lib/courses";
 import { siteConfig } from "@/lib/site-config";
 
 const quickLinks = [
-  { label: "About Us", href: "/about" },
+  { label: "About Us", href: "/#about" },
   { label: "Our Services", href: "/#services" },
   { label: "Pricing Plans", href: "/#pricing" },
   { label: "Contact Us", href: "/contact" },
@@ -87,7 +87,7 @@ function SiteFooter() {
           <ul className="mt-5 flex flex-col gap-4 text-sm">
             <li className="flex items-start gap-3">
               <MapPin className="size-4 shrink-0 text-primary" aria-hidden="true" />
-              {siteConfig.city}
+              {siteConfig.address}
             </li>
             <li className="flex items-start gap-3">
               <Phone className="size-4 shrink-0 text-primary" aria-hidden="true" />
