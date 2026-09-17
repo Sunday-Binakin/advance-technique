@@ -5,8 +5,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Field } from "@/components/apply/field";
-import type { SelectOption } from "@/lib/apply-form-options";
+import { Field } from "@/components/form/field";
+import type { SelectOption } from "@/lib/select-option";
 
 function SelectField({
   label,

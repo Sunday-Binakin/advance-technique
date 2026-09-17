@@ -1,7 +1,6 @@
-export type SelectOption = {
-  value: string;
-  label: string;
-};
+import type { SelectOption } from "@/lib/select-option";
+
+export type { SelectOption };
 
 export const genderOptions: SelectOption[] = [
   { value: "male", label: "Male" },

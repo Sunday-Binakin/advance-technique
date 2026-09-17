@@ -22,7 +22,7 @@ const highlights = [
 // (next/image, fill + object-cover) once it's supplied.
 function AboutSection() {
   return (
-    <section className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-16 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
+    <section id="about" className="mx-auto grid w-full max-w-6xl scroll-mt-24 grid-cols-1 items-center gap-16 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:py-24">
       <div className="relative mx-auto w-full max-w-md lg:max-w-none">
         <div
           aria-hidden="true"
